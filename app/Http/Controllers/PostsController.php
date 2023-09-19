@@ -7,7 +7,7 @@ use Illuminate\Support\Facades\Http;
 use App\Models\Posts;
 class PostsController extends Controller
 {
-    public function callback(Request $request)
+    public function index(Request $request)
     {
         // Send HTTP request and retrieve response
         $response = Http::get('https://jsonplaceholder.typicode.com/posts');
@@ -47,7 +47,7 @@ class PostsController extends Controller
 
         // Check if the post exists
         if (!$post) {
-            // Handle the case when the post is not found (e.g., return a 404 page)
+            // Handle the case when the post is not found 
             abort(404);
         }
 

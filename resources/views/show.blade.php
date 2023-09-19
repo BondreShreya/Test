@@ -13,10 +13,11 @@
                             {{ session('status') }}
                         </div>
                     @endif
-
-                    <h2>{{ $post->title }}</h2>
-                    <p>{{ $post->body }}</p>
-                    <p>UserID: {{ $post->id }}</p>
+                    <p><strong> Id : </strong>{{ $post->id }}</p>
+                    <p><strong> UserID : </strong>{{ $post->userId }}</p>
+                    <p><strong> Title : </strong>{{ $post->title }}</p>
+                    <p><strong> Body : </strong>{{ $post->body }}</p>
+                    
                 </div>
             </div>
         </div>

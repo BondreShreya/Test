@@ -13,13 +13,10 @@
                             {{ session('status') }}
                         </div>
                     @endif
-                    <!-- <a href="{{ url('/add_product')}}">Add Product</a> -->
-                   
-                    <div class="card-body">
-                    <a href="{{ route('fetch_data')}}" type="btn btn-primary">Fetch Data</a>
-               
-
-                </div>
+                    
+                   <div class="card-body">
+                        <a href="{{ route('fetch_data')}}" class="btn btn-primary">Fetch Data</a>
+                    </div>
                 </div>
             </div>
         </div>
