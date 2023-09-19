@@ -13,7 +13,14 @@ return new class extends Migration
     {
         Schema::create('bookmarks', function (Blueprint $table) {
             $table->id();
+            $table->unsignedBigInteger('user_id'); // Use unsignedBigInteger for user ID
+            $table->unsignedBigInteger('post_id'); // Use unsignedBigInteger for post ID
             $table->timestamps();
+    
+            // Define foreign key constraints
+            $table->unique(['user_id', 'post_id']); // Ensure unique bookmarks
+            $table->foreign('user_id')->references('id')->on('users')->onDelete('cascade');
+            $table->foreign('post_id')->references('id')->on('posts')->onDelete('cascade');
         });
     }
 

@@ -11,6 +11,12 @@ class Posts extends Model
     protected $table = "posts";
 
     protected $fillable = [
-        'userID', 'title', 'body',
+        'userId', 'title', 'body', // Use 'userId' instead of 'userID'
     ];
+
+    public function user()
+    {
+        return $this->belongsTo(User::class, 'userId', 'id'); // Define a belongsTo relationship to the User model
+    }
 }
+

@@ -2,9 +2,12 @@
 
 namespace App\Http\Controllers;
 
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Http;
 use App\Models\Posts;
+
+
 class PostsController extends Controller
 {
     public function index(Request $request)
@@ -55,5 +58,49 @@ class PostsController extends Controller
         return view('show', ['post' => $post]);
     }
     
+    // Add a post to a user's bookmarks
+    
+    public function bookmarkPost(Request $request, $post_id)
+    {
+        // Get the authenticated user
+        $user = Auth::user();
+
+        if (!$user) {
+            // Handle the case when the user is not authenticated
+            return redirect()->route('login')->with('error', 'You must be logged in to bookmark a post.');
+        }
+
+        // Check if the post is already bookmarked by the user
+        if ($user->bookmarks->contains($post_id)) {
+            // Handle the case when the post is already bookmarked
+            return redirect()->back()->with('error', 'This post is already bookmarked.');
+        }
+
+        // Bookmark the post
+        $user->bookmarks()->attach($post_id);
+
+        // Redirect the user to the bookmarks list view
+        return redirect()->route('bookmarks_view')->with('success', 'Post bookmarked successfully.');
+    }
+
+    // Retrieve a user's bookmarks
+    public function viewBookmarks()
+    {
+        // Get the authenticated user
+        $user = Auth::user();
+
+        if (!$user) {
+            // Handle the case when the user is not authenticated
+            return redirect()->route('login')->with('error', 'You must be logged in to view bookmarks.');
+        }
+
+        // Retrieve the user's bookmarks
+        $bookmarks = $user->bookmarks;
+
+        return view('bookmarks_view', ['bookmarks' => $bookmarks]);
+    }
+
+
+
 
 }

@@ -18,6 +18,12 @@
                     <p><strong> Title : </strong>{{ $post->title }}</p>
                     <p><strong> Body : </strong>{{ $post->body }}</p>
                     
+                    <!-- Bookmark button -->
+                    <form method="POST" action="{{ route('bookmark', ['id' => $post->id]) }}">
+                        @csrf
+                        <button type="submit" class="btn btn-primary">Bookmark</button>
+                    </form>
+
                 </div>
             </div>
         </div>

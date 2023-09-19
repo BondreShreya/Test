@@ -42,4 +42,12 @@ class User extends Authenticatable
         'email_verified_at' => 'datetime',
         'password' => 'hashed',
     ];
+
+
+    // User.php
+    public function bookmarks()
+    {
+        return $this->belongsToMany(Posts::class, 'bookmarks', 'user_id', 'post_id');
+    }
+
 }

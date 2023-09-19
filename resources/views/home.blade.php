@@ -15,8 +15,16 @@
                     @endif
                     
                    <div class="card-body">
-                        <a href="{{ route('fetch_data')}}" class="btn btn-primary">Fetch Data</a>
+                        <ul class="list-unstyled">
+                            <li>
+                                <a href="{{ route('fetch_data')}}" type="btn btn-primary">Fetch Data</a> 
+                            </li>
+                            <li>
+                                <a href="{{ route('bookmarks_view')}}" type="btn btn-primary">My Bookmarks</a>
+                            </li>
+                        </ul>
                     </div>
+                   
                 </div>
             </div>
         </div>
